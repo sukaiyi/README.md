@@ -49,7 +49,7 @@ public class JvmClassLinkedModel {
     private static String resolveClassInfo(List<ConstantPoolInfoBlock.Data> constantPoolInfos, Supplier<Integer> indexSupplier) {
         return Optional.ofNullable(constantPoolInfos)
                 .filter(e -> !e.isEmpty())
-                .map(e -> e.get(indexSupplier.get() - 1))
+                .map(e -> e.get(indexSupplier.get()))
                 .filter(e -> e instanceof ConstantPoolInfoBlock.ClassValue)
                 .map(e -> (ConstantPoolInfoBlock.ClassValue) e)
                 .map(ConstantPoolInfoBlock.ClassValue::getFullNameIndex)
@@ -60,7 +60,7 @@ public class JvmClassLinkedModel {
     private static String resolveUtf8Value(List<ConstantPoolInfoBlock.Data> constantPoolInfos, Supplier<Integer> indexSupplier) {
         return Optional.ofNullable(constantPoolInfos)
                 .filter(e -> !e.isEmpty())
-                .map(e -> e.get(indexSupplier.get() - 1))
+                .map(e -> e.get(indexSupplier.get()))
                 .filter(e -> e instanceof ConstantPoolInfoBlock.Utf8Value)
                 .map(e -> (ConstantPoolInfoBlock.Utf8Value) e)
                 .map(ConstantPoolInfoBlock.Utf8Value::getValue)

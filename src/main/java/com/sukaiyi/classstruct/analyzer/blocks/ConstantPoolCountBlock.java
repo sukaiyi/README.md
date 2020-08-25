@@ -3,6 +3,7 @@ package com.sukaiyi.classstruct.analyzer.blocks;
 import com.sukaiyi.byteutils.analyzer.Block;
 import com.sukaiyi.byteutils.utils.ByteUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,8 @@ public class ConstantPoolCountBlock implements Block<Integer> {
 
     @Override
     public void decode(Map<Class<?>, List<Block<?>>> blockAlreadyDecode, byte[] bytes, int start, int len, boolean finished) {
-        this.data = (int) ByteUtils.byteToUnsignedLong(bytes, start, len) - 1;
+        this.data = (int) ByteUtils.byteToUnsignedLong(bytes, start, len);
+        blockAlreadyDecode.computeIfAbsent(ConstantPoolInfoBlock.class, key -> new ArrayList<>()).add(null);
     }
 
     @Override
